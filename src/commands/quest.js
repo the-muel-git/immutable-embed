@@ -1,4 +1,4 @@
-const { EmbedBuilder, ActionRowBuilder, SelectMenuBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const { playerCache, activeQuestCache } = require('../utils/cache');
 
 // Quest data
@@ -57,10 +57,10 @@ function getPlayerData(userId, username) {
 function createQuestMenu() {
     return new ActionRowBuilder()
         .addComponents(
-            new SelectMenuBuilder()
+            new StringSelectMenuBuilder()
                 .setCustomId('quest_select')
                 .setPlaceholder('🗺️ Choose your quest')
-                .addOptions(
+                .setOptions(
                     QUESTS.map(quest => ({
                         label: quest.name,
                         description: `${quest.difficulty} • ${quest.timeRequired / 60}m • ${quest.expReward} EXP`,
