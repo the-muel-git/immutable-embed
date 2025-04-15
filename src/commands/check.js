@@ -2,6 +2,9 @@ const { EmbedBuilder } = require('discord.js');
 const axios = require('axios');
 const { leaderboardCache } = require('../utils/cache');
 
+// API configuration
+const API_URL = process.env.API_URL || 'https://express-js-server-production.up.railway.app';
+
 module.exports = {
     data: {
         name: 'check',
@@ -19,8 +22,8 @@ module.exports = {
         
         try {
             console.log('🔍 Checking wallet:', wallet);
-            const response = await axios.get(`https://api.immutable.com/v1/rewards/gems/${wallet}`);
-            const gemsData = response.data.result;
+            const response = await axios.get(`${API_URL}/gems/${wallet}`);
+            const gemsData = response.data.data;
             
             // Store in leaderboard cache with debug logging
             const walletData = {

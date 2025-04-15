@@ -6,12 +6,12 @@ const {
 } = require('discord.js');
 const { playerCache } = require('../utils/cache');
 
-// Game configuration
+// Game configuration with environment variable support
 const GAME_CONFIG = {
     title: "🔴 ImmutaBall",
     description: "Test your skills in this addictive Flappy Bird-style game with a twist! Guide your bouncing ball through obstacles and aim for the highest score.",
-    gameUrl: "https://immutaball.vercel.app",
-    thumbnailUrl: "https://immutaball.vercel.app/images/immutaball-thumbnail.png",
+    gameUrl: process.env.GAME_URL || "https://immutaball.vercel.app",
+    thumbnailUrl: process.env.GAME_THUMBNAIL || "https://immutaball.vercel.app/images/immutaball-thumbnail.png",
     sessionParam: "session",
     features: [
         "Simple tap/click controls",
@@ -20,6 +20,9 @@ const GAME_CONFIG = {
         "Global leaderboards"
     ]
 };
+
+// API configuration
+const API_URL = process.env.API_URL || 'https://express-js-server-production.up.railway.app';
 
 // Helper function to format high score
 function formatScore(score) {

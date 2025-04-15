@@ -7,7 +7,9 @@ const {
     ButtonStyle 
 } = require('discord.js');
 const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
+
+// Load environment variables from .env in the current directory
+require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 
 // Import commands
 const checkCommand = require('./commands/check');
@@ -16,6 +18,10 @@ const questCommand = require('./commands/quest');
 const statsCommand = require('./commands/stats');
 const oracleCommand = require('./commands/oracle');
 const gameCommand = require('./commands/game');
+
+// Log API URL for debugging
+console.log('🔌 Using API URL:', process.env.API_URL || 'Default API URL');
+console.log('🎮 Using Game URL:', process.env.GAME_URL || 'Default Game URL');
 
 // Create client instance with all necessary intents
 const client = new Client({
